@@ -219,7 +219,7 @@
             const state = userState[sectionName][currentQuestionIndex];
 
             document.getElementById('q-number-display').innerText = `Question No. ${currentQuestionIndex + 1}`;
-            document.getElementById('q-text').innerText = qData.text;
+            document.getElementById('q-text').innerHTML = qData.text;
 
             const imgEl = document.getElementById('q-image');
             if (qData.img && qData.img.trim() !== "") { imgEl.src = qData.img; imgEl.style.display = "block"; } 
