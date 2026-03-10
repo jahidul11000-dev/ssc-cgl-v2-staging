@@ -353,10 +353,52 @@
 
         function enterReviewMode() {
             isReviewMode = true;
-            document.getElementById('exam-title-text').innerText += " [REVIEW MODE]"; document.getElementById('time-display').innerText = "Test Completed";
-            document.getElementById('exam-footer').innerHTML = `<div style="width: 100%; display: flex; justify-content: center;"><button class="btn btn-submit" style="width: 100%; max-width: 400px; padding: 12px; font-size: 1.1rem;" onclick="window.location.href='index.html'">← Return to Dashboard</button></div>`;
+            document.getElementById('exam-title-text').innerText += " [REVIEW MODE]"; 
+            document.getElementById('time-display').innerText = "Test Completed";
+            
+            // 1. Updated Footer with Previous & Next Buttons
+            document.getElementById('exam-footer').innerHTML = `
+                <div style="width: 100%; display: flex; flex-direction: column; gap: 10px;">
+                    <div style="display: flex; justify-content: space-between; gap: 10px;">
+                        <button class="btn" style="flex: 1; border: 2px solid var(--tcs-blue); color: var(--tcs-blue); font-size: 1rem; padding: 10px;" onclick="navigateReview(-1)">◀ Previous</button>
+                        <button class="btn" style="flex: 1; border: 2px solid var(--tcs-blue); color: var(--tcs-blue); font-size: 1rem; padding: 10px;" onclick="navigateReview(1)">Next ▶</button>
+                    </div>
+                    <button class="btn btn-submit" style="width: 100%; padding: 12px; font-size: 1.1rem;" onclick="window.location.href='index.html'">⌂ Return to Dashboard</button>
+                </div>
+            `;
+            
             document.getElementById('legend-grid').innerHTML = `<div class="legend-item"><div class="badge correct" id="cnt-correct">0</div> Correct</div><div class="legend-item"><div class="badge wrong" id="cnt-wrong">0</div> Incorrect</div><div class="legend-item"><div class="badge unattempted" id="cnt-unattempted">0</div> Unattempted</div>`;
             currentSectionIndex = 0; currentQuestionIndex = 0; renderTabs(); loadQuestion();
+        }
+        // 2. Navigation Logic for Review Mode
+        function navigateReview(direction) {
+            const sectionName = sections[currentSectionIndex];
+            const maxQ = testData[sectionName].length;
+
+            currentQuestionIndex += direction;
+
+            // Handle hitting the boundaries (going back from Q1 or forward from Q25)
+            if (currentQuestionIndex < 0) {
+                if (currentSectionIndex > 0) {
+                    currentSectionIndex--;
+                    currentQuestionIndex = testData[sections[currentSectionIndex]].length - 1;
+                } else {
+                    currentQuestionIndex = 0; // Already at the very first question
+                }
+            } else if (currentQuestionIndex >= maxQ) {
+                if (currentSectionIndex < sections.length - 1) {
+                    currentSectionIndex++;
+                    currentQuestionIndex = 0;
+                } else {
+                    currentQuestionIndex = maxQ - 1; // Already at the very last question
+                }
+            }
+
+            renderTabs();
+            loadQuestion();
+            
+            // Auto-scroll to the top of the question body so you don't have to scroll up manually
+            document.querySelector('.question-body').scrollTop = 0; 
         }
     </script>
 </body>
