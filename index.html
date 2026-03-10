@@ -369,11 +369,14 @@
 
                         </div>`;
                 } else {
+                    // Convert "Sept 18, Shift 2" into "Sept18_S2" for the URL
+                    const testId = shiftTarget.replace(' ', '').replace(', Shift ', '_S'); 
+                    
                     html += `
                         <div class="mock-slot ${shiftClass} ${isMission}" id="slot-${shiftIndex}">
                             <label class="custom-checkbox"><input type="checkbox" id="${checkboxId}" onclick="openModal(${shiftIndex}, '${shiftTarget}', event)"><span class="checkmark"></span></label>
                             <div class="mock-info"><div class="mock-window">${win}</div><div class="mock-target">${shiftTarget}</div></div>
-                            <input type="text" class="score-input" id="${scoreId}" placeholder="Score" value="" disabled>
+                            <button class="save-btn" style="padding: 8px 12px; font-size: 0.8rem; cursor: pointer;" onclick="window.location.href='exam.html?test=${testId}&id=${shiftIndex}'">▶ Start</button>
                         </div>`;
                 }
                 shiftIndex++;
