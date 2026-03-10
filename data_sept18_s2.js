@@ -92,6 +92,19 @@ Object.assign(mockDatabase, {
                     "D": "No article"
                 },
                 "correct": "B"
+            },
+            {
+                "qNo": 3,
+                "text": "Solve for $x$: $2x + \\sqrt{16} = 10$",
+                "img": "",
+                "options": {
+                    "A": "2",
+                    "B": "5",
+                    "C": "3",
+                    "D": "4"
+                },
+                "correct": "C",
+                "explanation": "Since $\\sqrt{16} = 4$, we have $2x + 4 = 10 \\implies 2x = 6 \\implies x = 3$."
             }
         ],
         "English Comprehension": [
