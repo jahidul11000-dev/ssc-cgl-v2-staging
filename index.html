@@ -279,16 +279,31 @@
     localStorage.removeItem('shuffledShifts'); // Force sync
     
     const allShifts = [
-        "Sept 18, Shift 2", "Sept 12, Shift 3", "Sept 24, Shift 1", "Sept 15, Shift 1", "Sept 21, Shift 2", "Sept 26, Shift 3",
-        "Sept 13, Shift 2", "Sept 19, Shift 1", "Sept 22, Shift 3", "Sept 14, Shift 1", "Sept 20, Shift 2", "Sept 25, Shift 3",
-        "Sept 16, Shift 2", "Sept 17, Shift 3", "Sept 23, Shift 1", "Sept 12, Shift 1", "Sept 18, Shift 3", "Sept 24, Shift 2",
-        "Sept 15, Shift 2", "Sept 21, Shift 3", "Sept 26, Shift 1", "Sept 13, Shift 3", "Sept 19, Shift 2", "Sept 22, Shift 1",
-        "Sept 14, Shift 2", "Sept 20, Shift 3", "Sept 25, Shift 1", "Sept 16, Shift 3", "Sept 17, Shift 1", "Sept 23, Shift 2",
-        "Sept 12, Shift 2", "Sept 18, Shift 1", "Sept 24, Shift 3", "Sept 15, Shift 3", "Sept 21, Shift 1", "Sept 26, Shift 2",
-        "Sept 13, Shift 1", "Sept 19, Shift 3", "Sept 22, Shift 2", "Sept 14, Shift 3", "Sept 20, Shift 1", "Sept 25, Shift 2",
-        "Sept 16, Shift 1", "Sept 17, Shift 2", "Sept 23, Shift 3"
-    ];
+        // BLOCK 1 (Weeks 1 to 3) - Mixing Sept 12, 13, and 14
+        "Sept 12, Shift 2", "Sept 13, Shift 1", "Sept 14, Shift 3",
+        "Sept 12, Shift 1", "Sept 14, Shift 2", "Sept 13, Shift 3",
+        "Sept 13, Shift 2", "Sept 12, Shift 3", "Sept 14, Shift 1",
 
+        // BLOCK 2 (Weeks 4 to 6) - Mixing Sept 15, 16, and 17
+        "Sept 15, Shift 2", "Sept 16, Shift 1", "Sept 17, Shift 3",
+        "Sept 15, Shift 1", "Sept 17, Shift 2", "Sept 16, Shift 3",
+        "Sept 16, Shift 2", "Sept 15, Shift 3", "Sept 17, Shift 1",
+
+        // BLOCK 3 (Weeks 7 to 9) - Mixing Sept 18, 19, and 20
+        "Sept 18, Shift 2", "Sept 19, Shift 1", "Sept 20, Shift 3",
+        "Sept 18, Shift 1", "Sept 20, Shift 2", "Sept 19, Shift 3",
+        "Sept 19, Shift 2", "Sept 18, Shift 3", "Sept 20, Shift 1",
+
+        // BLOCK 4 (Weeks 10 to 12) - Mixing Sept 21, 22, and 23
+        "Sept 21, Shift 2", "Sept 22, Shift 1", "Sept 23, Shift 3",
+        "Sept 21, Shift 1", "Sept 23, Shift 2", "Sept 22, Shift 3",
+        "Sept 22, Shift 2", "Sept 21, Shift 3", "Sept 23, Shift 1",
+
+        // BLOCK 5 (Weeks 13 to 15) - Mixing Sept 24, 25, and 26
+        "Sept 24, Shift 2", "Sept 25, Shift 1", "Sept 26, Shift 3",
+        "Sept 24, Shift 1", "Sept 26, Shift 2", "Sept 25, Shift 3",
+        "Sept 25, Shift 2", "Sept 24, Shift 3", "Sept 26, Shift 1"
+    ];
     // --- TOAST NOTIFICATIONS ---
     function showToast(message, type="success") {
         const container = document.getElementById('toastContainer');
