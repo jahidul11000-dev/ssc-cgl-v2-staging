@@ -1,1 +1,1 @@
-const mockDatabase={};
+const mockDatabase = {};
