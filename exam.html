@@ -298,16 +298,47 @@
         }
 
         function saveResponse(actionType) {
-            if(isReviewMode) return; const sectionName = sections[currentSectionIndex]; const selectedOpt = getSelectedOption();
+            if(isReviewMode) return; 
+            const sectionName = sections[currentSectionIndex]; 
+            const selectedOpt = getSelectedOption();
+            
             userState[sectionName][currentQuestionIndex].selected = selectedOpt;
-            if (actionType === 'review') userState[sectionName][currentQuestionIndex].status = 'review';
-            else if (actionType === 'save') { if (selectedOpt) userState[sectionName][currentQuestionIndex].status = 'answered'; else userState[sectionName][currentQuestionIndex].status = 'not-answered'; }
 
+            if (actionType === 'review') {
+                userState[sectionName][currentQuestionIndex].status = 'review';
+            } else if (actionType === 'save') {
+                if (selectedOpt) userState[sectionName][currentQuestionIndex].status = 'answered'; 
+                else userState[sectionName][currentQuestionIndex].status = 'not-answered'; 
+            }
+
+            // Logic for moving to the next question OR finishing the test
             if (currentQuestionIndex < testData[sectionName].length - 1) {
-                currentQuestionIndex++; if(userState[sectionName][currentQuestionIndex].status === 'not-visited') { userState[sectionName][currentQuestionIndex].status = 'not-answered'; } loadQuestion();
-            } else { if (currentSectionIndex < sections.length - 1) switchSection(currentSectionIndex + 1); else { renderPalette(); alert("End of test. Review or click Submit Test."); } }
+                currentQuestionIndex++; 
+                if(userState[sectionName][currentQuestionIndex].status === 'not-visited') { 
+                    userState[sectionName][currentQuestionIndex].status = 'not-answered'; 
+                } 
+                loadQuestion();
+            } else {
+                if (currentSectionIndex < sections.length - 1) {
+                    switchSection(currentSectionIndex + 1);
+                } else {
+                    // WE ARE ON THE ABSOLUTE LAST QUESTION OF THE TEST
+                    renderPalette(); // Instantly update the palette color
+                    
+                    // Flash a "Saved!" confirmation on the button
+                    const saveBtn = document.querySelector('.btn-save');
+                    const originalText = saveBtn.innerText;
+                    saveBtn.innerText = "✔ Saved!";
+                    saveBtn.style.backgroundColor = "#1b690c"; // Darker green for confirmation
+                    
+                    setTimeout(() => {
+                        saveBtn.innerText = originalText;
+                        saveBtn.style.backgroundColor = "var(--answered)";
+                    }, 1500);
+                } 
+            }
         }
-
+        
         function startTimer() {
             const timerEl = document.getElementById('time-display');
             timerInterval = setInterval(() => {
