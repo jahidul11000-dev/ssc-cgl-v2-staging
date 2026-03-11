@@ -664,9 +664,9 @@ Object.assign(mockDatabase, {
                 "text": "Let $x=\\sqrt{3}+\\sqrt{5}$ and $y=\\sqrt{8}+\\sqrt{2}$. Which one is greater?",
                 "img": "",
                 "options": {
-                    "A": "$x=y$",
-                    "B": "$x\\gty$",
-                    "C": "$x\\lty$",
+                    "A": "$x = y$",
+                    "B": "$x \\gt y$",
+                    "C": "$x \\lt y$",
                     "D": "Cannot be determined"
                 },
                 "correct": "C",
