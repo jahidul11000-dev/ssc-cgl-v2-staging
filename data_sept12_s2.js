@@ -665,8 +665,8 @@ Object.assign(mockDatabase, {
                 "img": "",
                 "options": {
                     "A": "$x=y$",
-                    "B": "$x\gty$",
-                    "C": "$x\lty$",
+                    "B": "$x\\gty$",
+                    "C": "$x\\lty$",
                     "D": "Cannot be determined"
                 },
                 "correct": "C",
