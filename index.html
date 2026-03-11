@@ -203,12 +203,14 @@
     <div class="countdown-bar">
         <div class="countdown-label" id="windowLabel">⏳ Loading Tracker...</div>
         <div class="countdown-units">
-            <div class="cu"><div class="cu-val" id="cd-h">--</div><div class="cu-lbl">Hours</div></div>
-            <div class="cd-sep">:</div>
-            <div class="cu"><div class="cu-val" id="cd-m">--</div><div class="cu-lbl">Minutes</div></div>
-            <div class="cd-sep">:</div>
-            <div class="cu"><div class="cu-val" id="cd-s">--</div><div class="cu-lbl">Seconds</div></div>
-        </div>
+        <div class="cu"><div class="cu-val" id="cd-d">--</div><div class="cu-lbl">Days</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cu"><div class="cu-val" id="cd-h">--</div><div class="cu-lbl">Hours</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cu"><div class="cu-val" id="cd-m">--</div><div class="cu-lbl">Minutes</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cu"><div class="cu-val" id="cd-s">--</div><div class="cu-lbl">Seconds</div></div>
+       </div>
     </div>
 
     <div class="stats">
@@ -593,10 +595,16 @@
         } else if (dayOfWeek === 0) { windowName = "⏳ Next Window Opens In:"; }
 
         const diff = endTime.getTime() - now.getTime();
-        const totalH = Math.floor(diff / (1000 * 60 * 60)); const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)); const s = Math.floor((diff % (1000 * 60)) / 1000);
+        
+        // New Math extracting Days and modulo Hours
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24)); 
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); 
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)); 
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
         
         document.getElementById('windowLabel').innerText = windowName; 
-        document.getElementById('cd-h').innerText = totalH.toString().padStart(2, '0');
+        document.getElementById('cd-d').innerText = d.toString();
+        document.getElementById('cd-h').innerText = h.toString().padStart(2, '0');
         document.getElementById('cd-m').innerText = m.toString().padStart(2, '0');
         document.getElementById('cd-s').innerText = s.toString().padStart(2, '0');
     }
