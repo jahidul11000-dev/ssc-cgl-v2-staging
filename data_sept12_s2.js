@@ -666,7 +666,7 @@ Object.assign(mockDatabase, {
                 "options": {
                     "A": "x=y",
                     "B": "x>y",
-                    "C": "x<y",
+                    "C": "x\<y",
                     "D": "Cannot be determined"
                 },
                 "correct": "C",
